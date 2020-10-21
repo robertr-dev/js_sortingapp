@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorting App</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="sort.js"></script>
+	<script src="Chart.min.js"></script>
+</head>
+<body>
+	<div id="container">
+	<a href="https://rrdev.tech/"><- back to rrdev.tech</a>
+	<h1><center>Sorting App</h1></center>
+	<i><center>by Robert Rutter</center></i>
+	<p><center>This app is built using native JavaScript. A set of random numbers between a min and max<br/>
+	is generated and sorted. Using the Chart.js library we can visualize this data in multiple forms.<br/> 
+	The application does not need to be run on a server.</center></p>
+	<p>
+		<center>The current sorting algorithms supported are: Bubble Sort and Insertion Sort.<br/>
+		All algorithms are programmed within sort.js.</center>
+	</p>
+	<p>
+		<center><b><a href="#">PROJECT CODE</a></b></center>
+	</p>
+	<hr/>
+
+	<input type="button" value="Show Bar Chart" onclick="showBar()">
+	<input type="button" value="Show Polar Area Chart" onclick="showPolar()">
+
+	<canvas id="myChart" width="400" height="300"></canvas>
+
+	<script>
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element 5', 
+				'Element 6', 'Element 7', 'Element 8', 'Element 9', 'Element 10', 
+				'Element 11', 'Element 12', 'Element 13', 'Element 14', 'Element 15', 
+				'Element 16', 'Element 17', 'Element 18', 'Element 19', 'Element 20', 
+				'Element 21', 'Element 22', 'Element 23', 'Element 24', 'Element 25', 
+				'Element 26', 'Element 27', 'Element 28', 'Element 29', 'Element 30', 
+				'Element 31', 'Element 32', 'Element 33', 'Element 34', 'Element 35', 
+				'Element 36', 'Element 37', 'Element 38', 'Element 39', 'Element 40'
+				],
+				datasets: [{
+					data: array,
+					backgroundColor: "rgba(111, 99, 236, 0.5)",
+					borderWidth: 2
+				}]
+			},
+			options: {
+				legend: {
+					display: false
+				}
+			}
+		});
+
+		function bubbleSortArray() {
+			bubbleSort();
+			myChart.data.datasets[0].data = sortedArray;
+			myChart.update();
+			console.log("Array sorted using Bubble Sort");
+			console.log(sortedArray);
+		}
+
+		function insertionSortArray() {
+			insertionSort();
+			myChart.data.datasets[0].data = sortedArray;
+			myChart.update();
+			console.log("Array sorted using Insertion Sort");
+			console.log(sortedArray);
+		}
+
+		function resetArray() {
+			generateArray();
+			myChart.data.datasets[0].data = array;
+			myChart.update();
+			console.log("Re-generating array...");
+			console.log(array);
+		}
+
+		function showBar() {
+			myChart.destroy();
+			myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element 5', 
+				'Element 6', 'Element 7', 'Element 8', 'Element 9', 'Element 10', 
+				'Element 11', 'Element 12', 'Element 13', 'Element 14', 'Element 15', 
+				'Element 16', 'Element 17', 'Element 18', 'Element 19', 'Element 20', 
+				'Element 21', 'Element 22', 'Element 23', 'Element 24', 'Element 25', 
+				'Element 26', 'Element 27', 'Element 28', 'Element 29', 'Element 30', 
+				'Element 31', 'Element 32', 'Element 33', 'Element 34', 'Element 35', 
+				'Element 36', 'Element 37', 'Element 38', 'Element 39', 'Element 40'
+				],
+				datasets: [{
+					data: array,
+					backgroundColor: "rgba(111, 99, 236, 0.5)",
+					borderWidth: 2
+				}]
+			},
+			options: {
+				legend: {
+					display: false
+				}
+			}
+		});
+		}
+
+		function showPolar() {
+			myChart.destroy();
+			myChart = new Chart(ctx, {
+			type: 'polarArea',
+			data: {
+				labels: ['Element 1', 'Element 2', 'Element 3', 'Element 4', 'Element 5', 
+				'Element 6', 'Element 7', 'Element 8', 'Element 9', 'Element 10', 
+				'Element 11', 'Element 12', 'Element 13', 'Element 14', 'Element 15', 
+				'Element 16', 'Element 17', 'Element 18', 'Element 19', 'Element 20', 
+				'Element 21', 'Element 22', 'Element 23', 'Element 24', 'Element 25', 
+				'Element 26', 'Element 27', 'Element 28', 'Element 29', 'Element 30', 
+				'Element 31', 'Element 32', 'Element 33', 'Element 34', 'Element 35', 
+				'Element 36', 'Element 37', 'Element 38', 'Element 39', 'Element 40'
+				],
+				datasets: [{
+					data: array,
+					backgroundColor: "rgba(111, 99, 236, 0.5)",
+					borderWidth: 2
+				}]
+			},
+			options: {
+				legend: {
+					display: false
+				}
+			}
+		});
+		}
+	</script>
+	<input type="button" value="Bubble Sort Array" onclick="bubbleSortArray()">
+	<input type="button" value="Insertion Sort Array" onclick="insertionSortArray()">
+	<br/>
+	<input type="button" value="Re-Generate Array" onclick="resetArray()">
+</div>
+</body>
+</html>
