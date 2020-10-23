@@ -1,3 +1,6 @@
+//this code is the intellectual property of the owner
+//rrdev.tech
+
 let arraySize = 40;
 let min = 3;
 let max = 250;
